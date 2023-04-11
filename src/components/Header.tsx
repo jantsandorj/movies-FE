@@ -37,7 +37,7 @@ const Header = () => {
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <input/>
+                  <input placeholder=''/>
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
