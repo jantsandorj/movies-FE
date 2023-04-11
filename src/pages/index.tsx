@@ -11,8 +11,7 @@ interface IProps {
 export default function Home(props:IProps):JSX.Element {
   return (
     <>
-    <div className='max-w-screen-xl'>
-
+    <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
       <Movies movies={props.result}/>
     </div>
     </>
@@ -20,8 +19,7 @@ export default function Home(props:IProps):JSX.Element {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get("http://localhost:9000/api/movies")
-  console.log(res.data.result);
+  const res = await axios.post("http://localhost:9000/api/movies", {pageSize:1, limit:30  })
   
   return {
     props:{
