@@ -1,18 +1,26 @@
-import React from 'react'
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import React, { useState } from "react";
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import axios from "axios"
+import { useSearchParams } from 'next/navigation';
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
+
+
 const Header = () => {
   const navigation = [
-    { name: 'Movies', href: 'movies', current: true },
-    { name: 'TV shows', href: 'tvshows', current: false },
-    { name: 'Movie Trivia', href: 'movietrivia', current: false },
-    { name: 'News', href: 'news', current: false },
-    { name: 'Showtimes', href: 'showtimes', current: false },
-  ]
+    { name: "Movies", href: "movies", current: true },
+    { name: "TV shows", href: "tvshows", current: false },
+    { name: "Movie Trivia", href: "movietrivia", current: false },
+    { name: "News", href: "news", current: false },
+    { name: "Showtimes", href: "showtimes", current: false },
+  ];
+  const SearchText = (event:any) =>{
+  const searchParams = useSearchParams();
+  const search = searchParams.set('search', event.target.value);
+  console.log(search)}
   
   return (
     <Disclosure as="nav" className="bg-[#FA320A]">
@@ -25,27 +33,40 @@ const Header = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://images.fandango.com/cms/assets/2d5a3340-be84-11ed-9d20-83ee649e98bd--rt25-logo-mainnav-161x50.svg"
-                    alt="Your Company"
-                  />
+                  <a href="http://localhost:3000/">
+                    <img
+                      className="block h-8 w-auto lg:hidden"
+                      src="https://images.fandango.com/cms/assets/2d5a3340-be84-11ed-9d20-83ee649e98bd--rt25-logo-mainnav-161x50.svg"
+                      alt="Your Company"
+                    />
+                  </a>
+                  <a href="http://localhost:3000/">
+
                   <img
                     className="hidden h-8 w-auto lg:block"
                     src="https://images.fandango.com/cms/assets/2d5a3340-be84-11ed-9d20-83ee649e98bd--rt25-logo-mainnav-161x50.svg"
                     alt="Your Company"
                   />
+                  </a>
+                </div>
+                <div className="ps-20">
+                  <input
+                    placeholder=" Search ..."
+                    onChange={()=>SearchText(event)}
+                    className="block w-full rounded h-5/6 border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <input placeholder=''/>
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? true : false}
                       >
@@ -89,7 +110,10 @@ const Header = () => {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Your Profile
                           </a>
@@ -99,7 +123,10 @@ const Header = () => {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Settings
                           </a>
@@ -109,7 +136,10 @@ const Header = () => {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Sign out
                           </a>
@@ -130,10 +160,12 @@ const Header = () => {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -143,8 +175,7 @@ const Header = () => {
         </>
       )}
     </Disclosure>
-  )
-}
-      
+  );
+};
 
-export default Header
+export default Header;

@@ -20,6 +20,7 @@ export default function Home(props:IProps):JSX.Element {
 
 export async function getServerSideProps() {
   const res = await axios.post("http://localhost:9000/api/movies", {pageSize:1, limit:30  })
+  console.log(res.data)
   
   return {
     props:{

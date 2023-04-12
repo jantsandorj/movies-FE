@@ -4,6 +4,8 @@ import axios from "axios";
 import { IMovie } from "./moviesCard";
 
 const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
+  console.log(movies);
+  
   return (
     <>
       <div className="bg-white">
@@ -16,6 +18,7 @@ const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
               return <MoviesCard key={index} item={item} />;
             })}
           </div>
+          <a>haha</a>
         </div>
       </div>
     </>
