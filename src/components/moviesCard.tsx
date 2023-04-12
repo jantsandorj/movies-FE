@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useRef } from "react";
-import {TomatoesMeter} from "./TomatoesMeter"
+import { TomatoesMeter } from "./TomatoesMeter"
 
 interface IMovies {
   key: number;
@@ -25,12 +25,14 @@ const MoviesCard = ({ item, key }: IMovies): JSX.Element => {
         />
       </div>
       <div className="mt-4 flex justify-between">
-        <a href={item.title}></a>
-        <p className="text-sm font-medium text-gray-900">{item.title}</p>
+        <Link href={`/movie/${item._id}`}>
+          <h1>{item.title}</h1>
+        </Link>
+
         <TomatoesMeter
-            criticMeter={item.tomatoes?.critic?.meter}
-            viewerMeter={item.tomatoes?.viewer?.meter}
-          />
+          criticMeter={item.tomatoes?.critic?.meter}
+          viewerMeter={item.tomatoes?.viewer?.meter}
+        />
       </div>
     </div>
   );

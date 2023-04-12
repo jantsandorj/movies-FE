@@ -2,6 +2,7 @@ import React from "react";
 import MoviesCard from "./moviesCard";
 import axios from "axios";
 import { IMovie } from "./moviesCard";
+import {Pagination} from "./page"
 
 const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
   console.log(movies);
@@ -18,6 +19,7 @@ const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
               return <MoviesCard key={index} item={item} />;
             })}
           </div>
+          {/* <Pagination totalRows={movies.}/> */}
           <a>haha</a>
         </div>
       </div>
@@ -25,4 +27,4 @@ const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
   );
 };
 
-export default Movies;
+export {Movies}
