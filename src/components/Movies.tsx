@@ -5,7 +5,6 @@ import { IMovie } from "./moviesCard";
 import {Pagination} from "./page"
 
 const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
-  console.log(movies);
   
   return (
     <>
@@ -19,8 +18,6 @@ const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
               return <MoviesCard key={index} item={item} />;
             })}
           </div>
-          {/* <Pagination totalRows={movies.}/> */}
-          <a>haha</a>
         </div>
       </div>
     </>

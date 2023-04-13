@@ -17,10 +17,10 @@ const Header = () => {
     { name: "News", href: "news", current: false },
     { name: "Showtimes", href: "showtimes", current: false },
   ];
-  const SearchText = (event:any) =>{
-  const searchParams = useSearchParams();
-  const search = searchParams.set('search', event.target.value);
-  console.log(search)}
+  // const SearchText = (event:any) =>{
+  // const searchParams = useSearchParams();
+  // const search = searchParams.set('search', event.target.value);
+  // console.log(search)}
   
   return (
     <Disclosure as="nav" className="bg-[#FA320A]">
@@ -52,7 +52,7 @@ const Header = () => {
                 <div className="ps-20">
                   <input
                     placeholder=" Search ..."
-                    onChange={()=>SearchText(event)}
+                    // onChange={()=>SearchText(event)}
                     className="block w-full rounded h-5/6 border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>

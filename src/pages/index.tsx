@@ -5,7 +5,6 @@ import ImageGallery from "react-image-gallery";
 import { IMovie } from "../components/moviesCard";
 import Link from "next/link";
 import axios from "axios"
-import { log } from "console";
 
 interface movieProps {
   movies: Array<IMovie>;
@@ -19,7 +18,6 @@ interface IProps {
 }
 
 export default function Home(props:IProps): JSX.Element {
-  console.log(props.result);
   
   let images = props.result.map((item:any, index: number) => {
     if (index <= 7) {
@@ -48,7 +46,7 @@ export default function Home(props:IProps): JSX.Element {
             onErrorImageURL="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Graukarte.svg/1200px-Graukarte.svg.png"
             items={images}
             renderItem={(item) => {
-              console.log(item);
+
 
               return (
                 <div>
@@ -75,7 +73,6 @@ export default function Home(props:IProps): JSX.Element {
             }}
           />
         </div>
-        <div className=" w-1/3">03</div>
       </div>
     </div>
   );
@@ -83,12 +80,13 @@ export default function Home(props:IProps): JSX.Element {
 
 export async function getServerSideProps() {
   const res = await axios.post("http://localhost:9000/api/movies", { pageSize: 1, limit: 30 })
-  console.log(res.data)
 
   return {
     props: {
       message: "success",
-      result: res.data.result
+      result: res.data.result,
+      totalRows: res.data.totalRows,
+      pageSize: res.data.pageSize
     }
   }
 }
