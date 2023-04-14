@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import axios from "axios"
-import { useSearchParams } from 'next/navigation';
+
+// const [search, setSearch] = useState("")
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+interface IProps{
+  message: string;
+  result: any
+}
 
 
-const Header = () => {
+const Header = (props:IProps) => {
   const navigation = [
     { name: "Movies", href: "movies", current: true },
     { name: "TV shows", href: "tvshows", current: false },
@@ -17,11 +21,7 @@ const Header = () => {
     { name: "News", href: "news", current: false },
     { name: "Showtimes", href: "showtimes", current: false },
   ];
-  // const SearchText = (event:any) =>{
-  // const searchParams = useSearchParams();
-  // const search = searchParams.set('search', event.target.value);
-  // console.log(search)}
-  
+  console.log(props);
   return (
     <Disclosure as="nav" className="bg-[#FA320A]">
       {({ open }) => (
@@ -52,7 +52,7 @@ const Header = () => {
                 <div className="ps-20">
                   <input
                     placeholder=" Search ..."
-                    // onChange={()=>SearchText(event)}
+                    // onChange={(e)=>{setSearch(e.target.value)}}
                     className="block w-full rounded h-5/6 border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -76,14 +76,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                </button>
-
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"> 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>

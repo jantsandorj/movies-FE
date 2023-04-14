@@ -1,8 +1,6 @@
 import React from "react";
 import MoviesCard from "./moviesCard";
-import axios from "axios";
 import { IMovie } from "./moviesCard";
-import {Pagination} from "./page"
 
 const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
   
@@ -15,7 +13,7 @@ const Movies = ({ movies }: { movies: Array<IMovie> }): JSX.Element => {
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {movies.map((item: IMovie, index: number) => {
-              return <MoviesCard key={index} item={item} />;
+              return <MoviesCard item={item} key={index}  />;
             })}
           </div>
         </div>

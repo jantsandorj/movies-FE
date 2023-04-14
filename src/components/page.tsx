@@ -14,11 +14,13 @@ export const Pagination = ({
     lastQuery: number;
   }
   const page = Math.floor(totalRows / 30);
-  const pageData = new Array(20).fill(10);
+  const pageData = new Array(20);
+  console.log(pageData);
+  
   const router = useRouter();
   const lastQuery:{} = router.query;
   const queryVal = Object.values(lastQuery)[0] 
-  console.log(queryVal)
+
   
 
   const activeClass = {
